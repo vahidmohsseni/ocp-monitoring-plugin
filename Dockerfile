@@ -31,7 +31,7 @@ ENV CGO_ENABLED=1
 
 RUN make build-backend BUILD_OPTS="-tags strictfipsruntime"
 
-FROM registry.ci.openshift.org/ocp/4.19:base-rhel9
+FROM quay.io/okd/scos-content:4.19.0-okd-scos.19-stream-coreos
 
 USER 1001
 
