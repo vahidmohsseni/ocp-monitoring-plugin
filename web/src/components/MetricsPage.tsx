@@ -665,6 +665,7 @@ export const QueryTable: FC<QueryTableProps> = ({ index, namespace, customDataso
   // the PROMETHEUS_TENANCY_BASE_PATH for requests in the developer view
   const tick = () => {
     if (isEnabled && isExpanded && !accessCheckLoading && query) {
+      const hasNamespace = namespace !== '' && namespace !== undefined && namespace !== null;
       safeFetch<PrometheusResponse>(
         buildPrometheusUrl({
           prometheusUrlProps: {
@@ -674,7 +675,7 @@ export const QueryTable: FC<QueryTableProps> = ({ index, namespace, customDataso
           },
           basePath: getPrometheusBasePath({
             prometheus: 'cmo',
-            useTenancyPath: useMetricsTenancy,
+            useTenancyPath: hasNamespace,
             basePathOverride: customDatasource?.basePath,
           }),
         }),
